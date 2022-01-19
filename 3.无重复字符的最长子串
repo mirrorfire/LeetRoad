@@ -1,0 +1,61 @@
+//滑动窗口法  T(n)=O(n^2)  S(n)=O(1)
+int lengthOfLongestSubstring(string s)
+{
+    int start(0), end(0), len(0), res(0);  //窗口左右端点，长度，最大窗口
+    while (end < s.size())  //右端扩大，左端压缩 t(n)=O(n)
+    {
+        for (int i=start;i<end;i++)  //窗口内部查重 t(n)=O(n) /*优化1 哈希表代替循环*/
+        {
+            if (s[end]==s[i])
+            {
+                start = i + 1;  //重复则压缩窗口
+                len = end - start;
+                break;
+            }
+        }
+        end++;  //扩大窗口
+        len++;
+        res = max(res, len);  //更新最大窗口
+    }
+    return res;
+}
+
+//优化1：滑动窗口+哈希表  T(n)=O(n)  S(n)=O(n)
+int lengthOfLongestSubstring(string s)
+{
+    int start(0), end(0), len(0), res(0);
+    unordered_map<char, int> hash; //S(n)=O(n)  /*优化2 数组代替哈希表*/
+    while (end < s.size())  //t(n)=O(n)
+    {
+        if (hash.find(s[end]) != hash.end() && hash[s[end]] >= start)  //哈希表代替循环降t(n)=O(1)
+        {
+            start = hash[s[end]] + 1;
+            len = end - start;
+        }
+        hash[s[end]] = end;
+        end++;
+        len++;
+        res = max(res, len);
+    }
+    return res;
+}
+
+//优化2：滑动窗口+数组 T(n)=O(n)  S(n)=O(n)
+int lengthOfLongestSubstring(string s)
+{
+    int start(0), end(0), len(0), res(0);
+    vector<int> vec(128, -1);  //数组代替哈希表优化
+    while (end < s.size())
+    {
+        if (vec[int(s[end])] >= start)
+        {
+            start = vec[int(s[end])] + 1;
+            len = end - start;
+        }
+        vec[int(s[end])] = end;
+        end++;
+        len++;
+        res = max(res, len);
+    }
+    return res;
+}
