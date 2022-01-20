@@ -1,0 +1,16 @@
+//分治法  T(n)=O(n)  S(n)=O(n)
+string convert(string s, int numRows) {  //先分每行字符串再合并
+    if (numRows == 1) return s;
+    vector<string> rows(min(numRows, int(s.size())));  //边界判断
+    int curRow = 0;  //当前行
+    bool goingDown = false;  //方向标志
+    for (char c : s) {  //按Z字顺序遍历一次，合成每行字符串
+        rows[curRow] += c;
+        if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;  //两端时才改变方向
+        curRow += goingDown ? 1 : -1;  //下降或上升一行
+    }
+    string ret; 
+    for (string row : rows) ret += row; //累加每行字符串
+    return ret;
+}
+
