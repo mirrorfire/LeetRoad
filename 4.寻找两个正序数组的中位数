@@ -1,0 +1,38 @@
+//归并法(暴力)  T(n)=O(m+n)  S(n)=O(m+n)
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    int m = nums1.size(), n = nums2.size(), k = 0, i = 0, j = 0;
+    vector<int> sub(m + n, 0);  //s(n)=O(m+n) /*优化1 双指针*/
+    while (i < m && j < n)
+        sub[k++] = nums1[i] < nums2[j] ? nums1[i++] : nums2[j++];
+    while (i < m) sub[k++] = nums1[i++];  //一个数组先结束就顺序插入另一个
+    while (j < n) sub[k++] = nums2[j++];
+    return k % 2 ? sub[k / 2] : (sub[k / 2] + sub[k / 2 - 1]) / 2.0;  //奇偶判断
+}
+
+//优化1：双指针  T(n)=O(m+n)  S(n)=O(1)
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    int m = nums1.size(), n = nums2.size(), p = 0, q = 0, l = 0, r = 0;  //指针指向数组，中位数存储
+    for (int i = 0; i <= (m + n) / 2; i++) {  //循环(m+n)/2  /*优化2 二分法*/
+        l = r;
+        r = (p < m && (q >= n || nums1[p] < nums2[q])) ?
+            nums1[p++] : nums2[q++];
+    }
+    return (m + n) & 1 ? r : (l + r) / 2.0;  //位与判断奇偶
+}
+
+//优化2：二分法  T(n)=O(log(m+n))  S(n)=O(1)
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    int m = nums1.size(), n = nums2.size(), l = 0, r = m;
+    if (m > n) return findMedianSortedArrays(nums2, nums1);  //保证前面长度小于后面，伪递归，不增加空间
+    while (l < r) {
+        int i = (l + r) / 2, j = (m + n + 1) / 2 - i;  //第一个和第二个数组左边元素的个数
+        nums1[i] < nums2[j - 1] ? l = ++i : r = i;
+    }
+    r = (m + n + 1) / 2 - l;
+    int subL = max(l <= 0 ? INT_MIN : nums1[l - 1],
+        r <= 0 ? INT_MIN : nums2[r - 1]);
+    if ((m + n) & 1) return subL;
+    int subR = min(l >= m ? INT_MAX : nums1[l],
+        r >= n ? INT_MAX : nums2[r]);
+    return (subL + subR) / 2.0;
+}
