@@ -1,0 +1,13 @@
+//数学法  T(n)=O(logn)  S(n)=O(1)
+int reverse(int x) {
+    int res = 0;
+    while (x != 0) {
+        if (res < INT_MIN / 10 || res > INT_MAX / 10) {  //不判断可能会在下文越界
+            return 0;
+        }
+        int digit = x % 10;  //取最后一位
+        x /= 10;
+        res = res * 10 + digit;  //填入最后一位，可能越界
+    }
+    return res;
+}
