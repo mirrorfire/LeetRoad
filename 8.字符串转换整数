@@ -1,0 +1,14 @@
+//数学法  T(n)=O(n)  S(n)=O(1)
+int myAtoi(string s) {
+    int i = 0, sign = 1, tmp = 0;
+    while(s[i] == ' ')  ++i;  //跳过前导空格
+    if(s[i] == '+' || s[i] == '-')
+        sign = (s[i++] == '-') ? -1 : 1;  //符号标志，用于判断溢出
+    while(s[i] >= '0' && s[i] <= '9')     //输入是否合法
+    {
+        if(tmp > INT_MAX / 10 || (tmp == INT_MAX / 10 && s[i] - '0' > 7)) //溢出判断
+            return sign == 1 ? INT_MAX : INT_MIN;  //根据符号标志上溢下溢
+        tmp = tmp * 10 + (s[i++] - '0');  //不加括号有溢出风险
+    }
+    return tmp * sign;
+}
