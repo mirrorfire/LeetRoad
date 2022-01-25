@@ -1,0 +1,12 @@
+//数学法  T(n)=O(logn)  S(n)=O(1)  
+bool isPalindrome(int x) {
+    if(x<0 || (x%10 == 0 && x!=0)){  //负数和末位为0不可能为回文(除了0)
+        return false;
+    }
+    int res = 0;
+    while(x>res){  //逐位取末位给res，到中间停止
+        res = res * 10 + x % 10;
+        x /= 10;
+    }
+    return x == res || x == res / 10;  //偶数直接比较，奇数修正中间位再比较
+}
