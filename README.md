@@ -9,6 +9,7 @@
 [6.Z字形变换](https://github.com/mirrorfire/LeetRoad/blob/f5807299bc8ef7773cd453cb345b406b1de8a26f/6.Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2)</br>
 [7.整数反转](https://github.com/mirrorfire/LeetRoad/blob/30154ae0cd84a7cd7f9e807d1b22bdd85aef66e3/7.%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC)</br>
 [8.字符串转换整数](https://github.com/mirrorfire/LeetRoad/blob/c57632350942bfe2f07fbe3429785ca2c0b0ba46/8.%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0)</br>
+[9.回文数](https://github.com/mirrorfire/LeetRoad/blob/95e3b3fa258f52a9268e85aed7d7f2f854b11495/9.%E5%9B%9E%E6%96%87%E6%95%B0)</br>
 
 ## 专题目录
 ### 哈希表
@@ -32,10 +33,12 @@
 ### 数学
 [7.整数反转](https://github.com/mirrorfire/LeetRoad/blob/30154ae0cd84a7cd7f9e807d1b22bdd85aef66e3/7.%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC)</br>
 [8.字符串转换整数](https://github.com/mirrorfire/LeetRoad/blob/c57632350942bfe2f07fbe3429785ca2c0b0ba46/8.%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0)</br>
+[9.回文数](https://github.com/mirrorfire/LeetRoad/blob/95e3b3fa258f52a9268e85aed7d7f2f854b11495/9.%E5%9B%9E%E6%96%87%E6%95%B0)</br>
 
 ## 难易目录
 ### 简单
 [1.两数之和](https://github.com/mirrorfire/LeetRoad/blob/b0f8378eb03c6da868a6da122bd4b8207afa26d9/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C)</br>
+[9.回文数](https://github.com/mirrorfire/LeetRoad/blob/95e3b3fa258f52a9268e85aed7d7f2f854b11495/9.%E5%9B%9E%E6%96%87%E6%95%B0)</br>
 
 ### 中等
 [2.两数相加](https://github.com/mirrorfire/LeetRoad/blob/b0f8378eb03c6da868a6da122bd4b8207afa26d9/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0)</br>
