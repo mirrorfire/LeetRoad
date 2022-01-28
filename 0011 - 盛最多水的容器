@@ -1,0 +1,17 @@
+//双指针法(贪心)  T(n)=O(n)  S(n)=O(1)
+int maxArea(vector<int>& height) {
+    int s = height.size();
+    int l(0),r(s-1);
+    int fmax = (r-l)*(min(height[l],height[r]));
+    while(l<r) {
+        if(height[l]>height[r]) {  //移动小的那个
+            r--;
+        } else {
+            l++;
+        }
+        int tmax = (r-l)*(min(height[l],height[r]));
+        fmax = max(fmax,tmax);
+    }
+    return fmax;
+}
+
