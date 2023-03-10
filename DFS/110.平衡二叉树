@@ -1,0 +1,47 @@
+//自顶向下方法，时间O(n^2) 空间O(n),每个节点高度计算被重复调用
+//前序遍历，从上到下判断每个节点左右子树高度差是否小于等于1，然后分别递归左右子节点
+int depth(TreeNode* root)
+{
+    if(!root)
+    {
+        return 0;
+    }
+    //每层递归深度+1
+    return max(depth(root->left), depth(root->right)) + 1;
+}
+bool isBalanced(TreeNode* root) 
+{
+    if(!root)
+    {
+        return true;
+    }
+    //左右子树高度差小于1且左右子树又分别为平衡树，这个子树才满足平衡
+    return abs(depth(root->left) - depth(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right);
+}
+
+//自底向上方法，时间O(n) 空间O(n)，每个节点高度计算只调用一次
+//后序遍历，从下到上分别判断左右子树是否平衡，再判断根节点子树是否平衡，只要有一个子树不平衡，整个树就不平衡
+int depth(TreeNode* root)
+{
+    if(!root)
+    {
+        return 0;
+    }
+    //先左后右遍历到底
+    int p = depth(root->left);
+    int q = depth(root->right);
+    //有不平衡的情况就一路退出递归
+    if(p == -1 || q == -1 || abs(p-q) > 1)
+    {
+        return -1;
+    }
+    //平衡则每层深度+1
+    else
+    {
+        return max(p, q) + 1;
+    }
+}
+bool isBalanced(TreeNode* root) 
+{
+    return depth(root) >= 0;
+}
