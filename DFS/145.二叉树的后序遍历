@@ -1,0 +1,17 @@
+void func(vector<int>& res, TreeNode* root)
+{
+    if(!root)
+    {
+        return;
+    }
+    func(res, root->left);
+    func(res, root->right);
+    res.push_back(root->val);
+}
+
+vector<int> postorderTraversal(TreeNode* root) 
+{
+    vector<int> res;
+    func(res, root);
+    return res;
+}
