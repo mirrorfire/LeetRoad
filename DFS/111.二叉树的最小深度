@@ -1,0 +1,28 @@
+//自顶向下方法，时间O(n) 空间O(n)
+//前序遍历，先左后右遍历到底，找到叶子结点，维护最小深度逐个向上跳出
+int minDepth(TreeNode* root) 
+{
+    if(!root)
+    {
+        return 0;
+    }
+    //找到叶子结点时开始计算深度
+    if(!root->left && !root->right)
+    {
+        return 1;
+    }
+    //防止根节点只有一侧子树的情况
+    int tmp = INT_MAX;
+    //有左走左
+    if(root->left)
+    {
+        tmp = min(minDepth(root->left), tmp);
+    }
+    //没左再走右
+    if(root->right)
+    {
+        tmp = min(minDepth(root->right), tmp);
+    }
+    //本次递归深度+1
+    return tmp + 1;
+}
