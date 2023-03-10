@@ -1,0 +1,16 @@
+//自底向上方法，时间O(n) 空间O(n)
+//后序遍历逐个减去节点值更新新的目标targetSum，找到叶子结点后验证
+bool hasPathSum(TreeNode* root, int targetSum) 
+{
+    if(!root)
+    {
+        return false;
+    }
+    //找到叶子结点后再判断
+    if(!root->left && !root->right)
+    {
+        return root->val == targetSum;
+    }
+    //左右有一个满足即可
+    return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
+}
