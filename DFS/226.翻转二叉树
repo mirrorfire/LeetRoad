@@ -1,0 +1,13 @@
+//从叶子结点层逐层左右翻转
+TreeNode* invertTree(TreeNode* root) 
+{
+    if(!root)
+    {
+        return nullptr;
+    }
+    TreeNode* left = invertTree(root->left);
+    TreeNode* right = invertTree(root->right);
+    root->left = right;
+    root->right = left;
+    return root;
+}
