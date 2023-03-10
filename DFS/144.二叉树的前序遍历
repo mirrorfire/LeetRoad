@@ -1,0 +1,18 @@
+//使用浅拷贝
+void func(vector<int>& res, TreeNode* root)
+{
+    if(!root)
+    {
+        return;
+    }
+    res.push_back(root->val);
+    func(res, root->left);
+    func(res, root->right);
+}
+
+vector<int> preorderTraversal(TreeNode* root) 
+{
+    vector<int> res;
+    func(res, root);
+    return res;
+}
